@@ -1,0 +1,21 @@
+/* Page background */
+body {
+    background-color: #101010;
+    color: #ffffff; /* Default text color for the whole page */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Heading styles */
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff;
+}
+
+/* Footer styles */
+footer {
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+    background-color: #181818; /* Slightly different from body for contrast */
+}
