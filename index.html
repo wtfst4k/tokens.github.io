@@ -21,6 +21,7 @@
       min-height: 100vh;
       padding: 40px 20px;
       align-items: center;
+      perspective: 1000px;
     }
 
     .center p {
@@ -44,12 +45,13 @@
       word-break: break-word;
       text-align: center;
       user-select: text;
-      transition: all 0.2s ease-in-out;
+      transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+      transform-style: preserve-3d;
+      will-change: transform;
     }
 
     .element:hover {
       box-shadow: 0 0 30px rgba(255, 80, 80, 0.9);
-      transform: scale(1.01);
     }
 
     .element br {
@@ -57,16 +59,17 @@
     }
 
     footer {
-		position: fixed;
-		bottom: 0;
-		left: 0;
-		width: 100%;
-		padding: 15px;
-		text-align: center;
-		font-size: 0.85rem;
-		background-color: #121212;
-		color: #888;
-		border-top: 1px solid #2a2a2a;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 15px;
+      text-align: center;
+      font-size: 0.85rem;
+      background-color: #121212;
+      color: #888;
+      border-top: 1px solid #2a2a2a;
+    }
   </style>
 </head>
 
@@ -76,7 +79,7 @@
       <p>Disabled Discord Tokens</p>
     </div>
 
-    <div class="element">
+    <div class="element" id="card">
       MTM1ODE5MzQ3NDAyMDU3MzI1NQ.GblEgg.MZHA4qqYg8sFSBPcAa2LBTHuOvpVrnhDwnKZ9k<br>
       MTM3NTgzOTgxMDUzMDQ0NzUwMg.G1DDnJ.bCFw5VSorMxNNqg-mWzng85CUFlZ2VT_f0khsw<br>
       MTM3NDE0MDI2NzU4OTkzMTA4OQ.Gh2EmC.rSdh10NoA7OKeCzURAkwsmKXrX6urcoRNtLia0<br>
@@ -88,5 +91,28 @@
       @hk4p on Discord
     </footer>
   </div>
+
+  <script>
+    const card = document.getElementById('card');
+
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      // LESS SENSITIVE: higher divisor
+      const rotateX = -(y - centerY) / 65;
+      const rotateY = (x - centerX) / 65;
+
+      card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+    });
+  </script>
 </body>
 </html>
