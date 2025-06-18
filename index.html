@@ -16,10 +16,10 @@
     }
 
     .wrapper {
+      padding: 40px 20px;
+      padding-bottom: 80px; /* space for fixed footer */
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
-      padding: 40px 20px;
       align-items: center;
       perspective: 1000px;
     }
@@ -69,6 +69,7 @@
       background-color: #121212;
       color: #888;
       border-top: 1px solid #2a2a2a;
+      z-index: 10;
     }
   </style>
 </head>
@@ -86,11 +87,11 @@
       MTM3NDExNDgyMzQyNzU4ODIzNg.GyHco1.V4aWe5rMaFQZFPG2QE9X3TM3qOoqVvPPCSBHtA<br>
       MTM3ODAxNjE3Mzk5MTY2MTY4MA.GYc4YO.cTi_kO0Bwlw4ra3aPDPjlrcb3U-y0hYImEpD9E<br>
     </div>
-
-    <footer>
-      @hk4p on Discord
-    </footer>
   </div>
+
+  <footer>
+    @hk4p on Discord
+  </footer>
 
   <script>
     const card = document.getElementById('card');
@@ -103,7 +104,6 @@
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
 
-      // LESS SENSITIVE: higher divisor
       const rotateX = -(y - centerY) / 65;
       const rotateY = (x - centerX) / 65;
 
